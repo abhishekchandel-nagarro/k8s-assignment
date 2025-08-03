@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-init-script
+data:
+  init-mongo.js: |
+    // Switch to the db
+    db = db.getSiblingDB('nagp');
+    
+    // Create a collection and insert sample records
+    db.actors.insertMany([
+      {
+        _id: ObjectId(),
+        name: "Akshay kumar"
+      },
+      {
+        _id: ObjectId(),
+        name: "Abhishek Bachan"
+      },
+      {
+        _id: ObjectId(),
+        name: "Salmon Bhai",
+      },
+      {
+        _id: ObjectId(),
+        name: "Katrina Kaif",
+      },
+      {
+        _id: ObjectId(),
+        name: "Aishwarya Rai",
+      },
+      {
+        _id: ObjectId(),
+        name: "Amitabh Bachan",
+      },
+      {
+        _id: ObjectId(),
+        name: "Jacky Shroff",
+      },
+    ]);
+    
+    print("Database initialized with " + db.actors.countDocuments() + " actors");
