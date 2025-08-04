@@ -4,10 +4,9 @@ WORKDIR /app
 
 
 COPY package*.json ./
-RUN npm ci --prefer-offline --only=production
-
+RUN npm cache clean --force && npm ci --only=production
 RUN rm -rf node_modules package-lock.json \
-    && npm install --prefer-offline --force
+    && npm install --force
 
 COPY . .
 EXPOSE 3000

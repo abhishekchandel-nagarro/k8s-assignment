@@ -14,7 +14,10 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: abhishekchandel/nagp-k8s-assignment-app:latest
+        image: abhishekchandelnag/k8s-assignment-app:latest
+        command: ["node"]
+        args: ["server.js"]
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
