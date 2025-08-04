@@ -1,8 +1,14 @@
-FROM node:24-slim
+FROM node:24-slim AS base
 
 WORKDIR /app
+
+
 COPY package*.json ./
-RUN npm install --production
+
+# Set production environment
+ENV NODE_ENV=production
+RUN npm ci --omit=dev
+
 COPY . .
 EXPOSE 3000
 CMD ["node", "server.js"]
