@@ -1,13 +1,8 @@
-FROM node:24-slim AS base
+FROM node:24-slim
 
 WORKDIR /app
-
-
 COPY package*.json ./
-RUN npm cache clean --force && npm ci --only=production
-RUN rm -rf node_modules package-lock.json \
-    && npm install --force
-
+RUN npm ci --only=production
 COPY . .
 EXPOSE 3000
 CMD ["node", "server.js"]
