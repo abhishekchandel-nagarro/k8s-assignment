@@ -1,7 +1,7 @@
 # Kubernetes Node.js + MongoDB Assignment
 
 ## 1. Project Overview
-This project was created as part of the "Home Assignment 2025" to demonstrate practical skills in containerization, Kubernetes orchestration, and cloud-native application deployment.
+This project was created to demonstrate practical skills in containerization, Kubernetes orchestration, and cloud-native application deployment.
 
 **Goal:** Deploy a Node.js web application with a MongoDB backend on Kubernetes, ensuring best practices for scalability, resilience, and maintainability.
 
