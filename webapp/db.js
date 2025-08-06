@@ -6,8 +6,18 @@ export async function getMongoClient() {
     if (client && client.topology && client.topology.isConnected()) {
         return client;
     }
+
+    // Construct the URI from individual environment variables
+    const user = encodeURIComponent(process.env.MONGO_USER);
+    const password = encodeURIComponent(process.env.MONGO_PASSWORD);
+    const host = process.env.MONGO_HOST;
+    const db = process.env.MONGO_DB;
     
-    client = new MongoClient(process.env.MONGO_URI, {
+    const mongoURI = `mongodb://${user}:${password}@${host}:27017/${db}?authSource=admin`;
+
+    console.log(`Attempting to connect to MongoDB with URI: mongodb://<user>:<password>@${host}:27017/${db}?authSource=admin`);
+
+    client = new MongoClient(mongoURI, {
         maxPoolSize: 10,
         minPoolSize: 5,
         maxIdleTimeMS: 60000,

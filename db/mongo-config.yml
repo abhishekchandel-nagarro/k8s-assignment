@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: mongo-config
 data:
-  mongo-url: mongo-service
+  mongo-host: "mongo-service"
   mongo-db: nagp
   mongo-collection: actors

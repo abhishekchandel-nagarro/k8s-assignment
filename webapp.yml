@@ -15,17 +15,26 @@ spec:
       containers:
       - name: webapp
         image: abhishekchandelnag/k8s-assignment-app:latest
-        command: ["node"]
-        args: ["server.js"]
+        command: ["node", "server.js"]
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
-        - name: MONGO_URI
+        - name: MONGO_HOST
           valueFrom:
             configMapKeyRef:
               name: mongo-config
-              key: mongo-url
+              key: mongo-host
+        - name: MONGO_USER
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-user
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-password
         - name: MONGO_DB
           valueFrom:
             configMapKeyRef:
